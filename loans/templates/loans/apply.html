@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">New Loan Application</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">Fill out the details below. Our AI will analyze your eligibility instantly.</p>
+                
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_principal" class="form-label font-weight-bold">Loan Amount ($)</label>
+                        {{ form.principal }}
+                        <div class="form-text">Standard amounts: $300 - $1,000</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_terms" class="form-label">Duration (Days)</label>
+                        {{ form.terms }}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="id_age" class="form-label">Age</label>
+                            {{ form.age }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="id_gender" class="form-label">Gender</label>
+                            {{ form.gender }}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="id_education" class="form-label">Highest Education Level</label>
+                        {{ form.education }}
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Submit Application & Scan
+                        </button>
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
